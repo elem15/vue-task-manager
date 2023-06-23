@@ -13,9 +13,19 @@ export const store = createStore({
     delete(state, { id }) {
       state.tasks = state.tasks.filter((task) => task.id !== id);
     },
-    update(state, { id }) {
+    complete(state, { id }) {
       const task = state.tasks.find((task) => task.id === id);
       task.complete = !task.complete;
     },
+    update(state, { task }) {
+      const index = state.tasks.findIndex((t) => t.id === task.id);
+      state.tasks.splice(index, 1, task);
+    }
+  },
+  getters: {
+    taskById: (state) => (id) => {
+      const task = state.tasks.find((task) => task.id == id);
+      return task;
+    }
   }
 });

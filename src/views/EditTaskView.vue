@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>ADD NEW TASK</h1>
+    <h1>EDIT TASK</h1>
     <form @submit.prevent="handleSubmit">
       <div>
         <label for="">Title</label>
@@ -11,7 +11,7 @@
         <textarea v-model="details" required />
       </div>
       <div class="button-wrapper">
-        <button>Add task</button>
+        <button>Сonfirm</button>
       </div>
     </form>
   </main>
@@ -19,25 +19,35 @@
 
 <script>
 export default {
-  name: "NewTaskForm",
+  name: "EditTaskForm",
+  props: ["id"],
   data() {
     return {
+      tasks: {},
       title: "",
       details: "",
+      complete: "",
     };
+  },
+  async created() {
+    this.task = this.$store.getters.taskById(this.id);
+    this.title = this.task.title;
+    this.details = this.task.details;
+    this.complete = this.task.complete;
   },
   methods: {
     handleSubmit() {
-      this.$store.commit('add', {
+      this.$store.commit('update', {
         task: {
-          id: new Date().getTime(),
+          id: this.id,
           title: this.title,
           details: this.details,
-          complete: false,
+          complete: this.complete,
         }
       });
-      this.title = "";
-      this.details = "";
+      this.$router.push({
+        name: "tasks",
+      });
     },
   },
 };

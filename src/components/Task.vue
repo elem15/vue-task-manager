@@ -4,8 +4,8 @@
       <h3 @click="detailsView = !detailsView">{{ task.title }}</h3>
       <div class="icons">
         <span class="icons tick" @click="handleComplete"> ✔ </span>
-        <span class="icons" @click="handleEdit"> 🧾</span>
-        <span class="icons del" @click="handleDelete">❌ </span>
+        <span class="icons" @click="handleEdit"> 🧾 </span>
+        <span class="icons del" @click="handleDelete"> ❌ </span>
       </div>
     </div>
     <div class="details" v-if="detailsView">
@@ -30,7 +30,13 @@ export default {
       this.$store.commit('delete', { id: this.task.id });
     },
     handleComplete() {
-      this.$store.commit('update', { id: this.task.id });
+      this.$store.commit('complete', { id: this.task.id });
+    },
+    handleEdit() {
+      this.$router.push({
+        name: "EditTaskView",
+        params: { id: this.task.id },
+      });
     },
   },
 };
