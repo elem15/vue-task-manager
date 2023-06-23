@@ -11,7 +11,7 @@
         <textarea v-model="details" required />
       </div>
       <div class="button-wrapper">
-        <button>Сonfirm</button>
+        <button>Submit</button>
       </div>
     </form>
   </main>

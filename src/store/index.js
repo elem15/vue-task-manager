@@ -1,4 +1,9 @@
 import { createStore } from 'vuex';
+import VuexPersistence from 'vuex-persist';
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+});
 
 export const store = createStore({
   state() {
@@ -27,5 +32,6 @@ export const store = createStore({
       const task = state.tasks.find((task) => task.id == id);
       return task;
     }
-  }
+  },
+  plugins: [vuexLocal.plugin],
 });
