@@ -30,11 +30,15 @@ export default {
     handleSubmit() {
       this.$store.commit('add', {
         task: {
+          id: new Date().getTime(),
           title: this.title,
           details: this.details,
           complete: false,
         }
       });
+      this.title = "";
+      this.details = "";
+      console.log(this.$store.state.tasks);
     },
   },
 };
@@ -86,7 +90,7 @@ textarea {
   height: 100px;
 }
 
-form button {
+button {
   display: block;
   margin: 20px 0 0;
   background: #033687;
@@ -96,7 +100,14 @@ form button {
   border-radius: 2rem;
   font-size: 1rem;
   cursor: pointer;
+}
 
+button:hover {
+  background: #164ea7;
+}
+
+button:active {
+  background: #0b1e3d;
 }
 
 .button-wrapper {
