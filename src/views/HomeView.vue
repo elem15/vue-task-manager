@@ -21,6 +21,7 @@
     font-size: 2rem;
     font-weight: 700;
     margin: 3rem;
+    text-align: center;
   }
 @media (min-width: 1024px) {
   .container {
