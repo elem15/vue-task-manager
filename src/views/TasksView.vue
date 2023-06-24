@@ -5,6 +5,10 @@
         <Task :task="task" />
       </div>
     </div>
+    <div v-else>
+      <br>
+      <h1>Tasks not added yet</h1>
+    </div>
   </div>
 </template>
 
