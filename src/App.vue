@@ -35,6 +35,7 @@ header {
 footer {
   position: fixed;
   bottom: 0;
+  left: 5vw;
   width: 90vw;
   font-size: 1.2rem;
   display: flex;
